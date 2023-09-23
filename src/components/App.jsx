@@ -16,15 +16,18 @@ export class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.inputValue !== this.state.inputValue ||
-      prevState.page !== this.state.page
-    ) {
-      const { inputValue, page } = this.state;
-      const response = getImages(inputValue, page);
-      console.log(response);
-      this.setState({ images: response });
-      // console.log(this.state);
+    const { inputValue, page } = this.state;
+
+    if (prevState.inputValue !== inputValue || prevState.page !== page) {
+      getImages(inputValue, page).then(({ hits }) => {
+        if (!hits.length) {
+          alert('gjgjh');
+          return;
+        }
+        this.setState(prevState => ({
+          images: [...prevState.images, ...hits],
+        }));
+      });
     }
   }
 
@@ -38,11 +41,11 @@ export class App extends Component {
 
   render() {
     const { images } = this.state;
+
     return (
       <div>
         <Searchbar onSubmit={this.formSubmit} />
         <ImageGallery images={images} />
-
         <Button onClick={this.handleLoadMore} />
         <ToastContainer autoClose={3000} position="top-center" />
       </div>
