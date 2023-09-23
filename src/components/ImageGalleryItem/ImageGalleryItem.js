@@ -2,13 +2,11 @@ import { Component } from 'react';
 
 export class ImageGalleryItem extends Component {
   render() {
-    const { image } = this.props;
+    const { id, webformatURL, tags } = this.props;
     return (
-      <>
-        <li key={image.id}>
-          <img src={image.webformatURL} alt={image.tags} />
-        </li>
-      </>
+      <li key={id}>
+        <img src={webformatURL} alt={tags} />
+      </li>
     );
   }
 }
