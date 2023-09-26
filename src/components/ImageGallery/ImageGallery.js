@@ -2,7 +2,7 @@ import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { ImageGalleryList } from './ImageGallery.styled';
 import PropTypes from 'prop-types';
 
-export const ImageGallery = ({ images, openModal }) => {
+export const ImageGallery = ({ images, openModal, tags }) => {
   return (
     <ImageGalleryList>
       {images.map(image => {
@@ -11,6 +11,7 @@ export const ImageGallery = ({ images, openModal }) => {
             key={image.id}
             image={image}
             openModal={openModal}
+            tags={tags}
           />
         );
       })}

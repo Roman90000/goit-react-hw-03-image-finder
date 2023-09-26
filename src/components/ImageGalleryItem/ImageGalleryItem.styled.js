@@ -1,22 +1,20 @@
 import styled from 'styled-components';
 
-export const ListItem = styled.li`
-  width: calc((100% - 40px) / 3);
-  border-radius: 16px;
-  border: 2px solid hsla(0, 0%, 50%, 0.4);
-  overflow: hidden;
-  transform: scale(1);
-  transition-duration: 700ms;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
+export const GalleryItemCard = styled.li`
+  border-radius: 10px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 `;
 
-export const Pic = styled.img`
+export const GalleryItemImage = styled.img`
   width: 100%;
-  height: auto;
-  height: 280px;
+  height: 260px;
   object-fit: cover;
+  border-radius: 10px;
+  transition: transform 250ms linear;
+
+  :hover {
+    transform: scale(1.03);
+    cursor: zoom-in;
+  }
 `;

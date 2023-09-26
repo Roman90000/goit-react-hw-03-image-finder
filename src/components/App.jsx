@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Loader } from './Loader/Loader';
 import { CustomModal } from './Modal/Modal';
-
 const { Component } = require('react');
 
 export class App extends Component {
@@ -16,8 +15,9 @@ export class App extends Component {
     page: 1,
     isLoading: false,
     isError: '',
-    modalIsOpen: true,
-    imageSrc: '',
+    modalIsOpen: false,
+    webformatURL: '',
+    tags: '',
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -65,12 +65,12 @@ export class App extends Component {
   closeModal = () => {
     this.setState({
       modalIsOpen: false,
-      imageSrc: '',
+      webformatURL: '',
     });
   };
 
   render() {
-    const { images, isLoading, modalIsOpen, imageSrc } = this.state;
+    const { images, isLoading, modalIsOpen, webformatURL, tags } = this.state;
 
     return (
       <div>
@@ -78,7 +78,11 @@ export class App extends Component {
         <ImageGallery images={images} openModal={this.openModal} />
         {images.length > 0 && <Button onClick={this.handleLoadMore} />}
         {isLoading && <Loader />}
-        <CustomModal modalIsOpen={modalIsOpen} image={imageSrc} />
+        <CustomModal
+          modalIsOpen={modalIsOpen}
+          image={webformatURL}
+          tags={tags}
+        />
         <ToastContainer autoClose={3000} position="top-center" />
       </div>
     );

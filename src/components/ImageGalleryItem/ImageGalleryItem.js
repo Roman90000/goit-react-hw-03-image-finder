@@ -1,14 +1,20 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ListItem, Pic } from './ImageGalleryItem.styled';
+import { GalleryItemCard, GalleryItemImage } from './ImageGalleryItem.styled';
 
 export class ImageGalleryItem extends Component {
   render() {
     const { image, openModal } = this.props;
     return (
-      <ListItem key={image.id} onClick={() => openModal(image)}>
-        <Pic src={image.webformatURL} alt={image.tags} />
-      </ListItem>
+      // <ListItem key={image.id} onClick={() => openModal(image)}>
+      <GalleryItemCard
+        key={image.id}
+        onClick={() =>
+          openModal({ webformatURL: image.tags, tags: image.tags })
+        }
+      >
+        <GalleryItemImage src={image.webformatURL} alt={image.tags} />
+      </GalleryItemCard>
     );
   }
 }
