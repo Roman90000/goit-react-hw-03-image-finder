@@ -1,12 +1,11 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 export const ImageGalleryList = styled.ul`
-  margin: 0 auto;
-  padding: 0;
-
-  display: grid;
-  max-width: calc(100vw - 48px);
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 16px;
-  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  padding: 30px;
 `;
