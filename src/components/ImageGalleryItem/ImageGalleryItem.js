@@ -10,7 +10,7 @@ export class ImageGalleryItem extends Component {
       <GalleryItemCard
         key={image.id}
         onClick={() =>
-          openModal({ webformatURL: image.tags, tags: image.tags })
+          openModal({ webformatURL: image.webformatURL, tags: image.tags })
         }
       >
         <GalleryItemImage src={image.webformatURL} alt={image.tags} />

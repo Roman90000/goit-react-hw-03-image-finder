@@ -43,8 +43,8 @@ export class Searchbar extends Component {
             value={this.state.valueImput}
             onChange={this.inputChange}
             type="text"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
           />
         </SearchFormEl>

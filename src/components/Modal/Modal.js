@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+Modal.setAppElement('#modal_root');
 
 const customStyles = {
   content: {
@@ -11,22 +12,27 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
   },
 };
-// Modal.setAppElement('#root');
 
-export const CustomModal = ({ modalIsOpen, onRequestClose, image }) => {
+export const CustomModal = ({
+  modalIsOpen,
+  onRequestClose,
+  image,
+  tags,
+  closeModal,
+}) => {
   return (
     <Modal
       style={customStyles}
-      IsOpen={modalIsOpen}
-      onRequestClose={onRequestClose}
+      isOpen={modalIsOpen}
+      onRequestClose={closeModal}
     >
-      <img src={image.webformatURL} alt={image.tags} />
+      <img src={image} alt={tags} />
     </Modal>
   );
 };
 
-Modal.propTypes = {
-  webformatURL: PropTypes.string.isRequired,
+CustomModal.propTypes = {
+  image: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };

@@ -18,6 +18,7 @@ export class App extends Component {
     modalIsOpen: false,
     webformatURL: '',
     tags: '',
+    isLoadMore: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -28,13 +29,14 @@ export class App extends Component {
         isLoading: true,
       });
       getImages(inputValue, page)
-        .then(({ hits }) => {
+        .then(({ hits, totalHits }) => {
           if (!hits.length) {
             alert('No pictures');
             return;
           }
           this.setState(prevState => ({
             images: [...prevState.images, ...hits],
+            isLoadMore: page < Math.ceil(totalHits / 12),
           }));
         })
         .catch(error => {
@@ -70,19 +72,24 @@ export class App extends Component {
   };
 
   render() {
-    const { images, isLoading, modalIsOpen, webformatURL, tags } = this.state;
+    const { images, isLoading, modalIsOpen, webformatURL, tags, isLoadMore } =
+      this.state;
 
     return (
       <div>
         <Searchbar onSubmit={this.formSubmit} />
         <ImageGallery images={images} openModal={this.openModal} />
-        {images.length > 0 && <Button onClick={this.handleLoadMore} />}
+        {isLoadMore && <Button onClick={this.handleLoadMore} />}
         {isLoading && <Loader />}
-        <CustomModal
-          modalIsOpen={modalIsOpen}
-          image={webformatURL}
-          tags={tags}
-        />
+        {modalIsOpen && (
+          <CustomModal
+            closeModal={this.closeModal}
+            modalIsOpen={modalIsOpen}
+            image={webformatURL}
+            tags={tags}
+          />
+        )}
+
         <ToastContainer autoClose={3000} position="top-center" />
       </div>
     );
