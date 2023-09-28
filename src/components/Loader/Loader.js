@@ -7,7 +7,7 @@ export const Loader = () => {
       height="300"
       width="300"
       ariaLabel="blocks-loading"
-      wrapperStyle={{}}
+      wrapperStyle={{ position: 'fixed', top: '30%', left: '40%' }}
       wrapperClass="blocks-wrapper"
       colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
     />

@@ -1,6 +1,6 @@
 import { Button } from './Button/Button';
 import { Searchbar } from './Searchbar/Searchbar';
-import { getImages } from './Api/Api';
+import { getImages } from '../Api/Api';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ImageGallery } from './ImageGallery/ImageGallery';
@@ -49,7 +49,7 @@ export class App extends Component {
   }
 
   formSubmit = inputValue => {
-    this.setState({ inputValue });
+    this.setState({ inputValue, images: [], page: 1 });
   };
 
   handleLoadMore = () => {

@@ -6,7 +6,6 @@ export class ImageGalleryItem extends Component {
   render() {
     const { image, openModal } = this.props;
     return (
-      // <ListItem key={image.id} onClick={() => openModal(image)}>
       <GalleryItemCard
         key={image.id}
         onClick={() =>
